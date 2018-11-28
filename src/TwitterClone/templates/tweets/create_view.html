@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+	{{ block.super }} | Create a new Tweet Post
+{% endblock title %}
+
+{% block content %}
+	<h1 class="display-1 mt-5">New Tweet Post</h1>
+	<p class="lead text-danger">Tweeting as {{ user.username }}</p>
+	<form action="" class="form" method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<input type="submit" value="Tweet">
+	</form>
+{% endblock content %}

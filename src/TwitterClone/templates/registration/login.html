@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<center>
+	<div class="col-md-6 col-sm-12 mt-5">
+		
+		<center><h1>Login</h1></center>
+<form method="post" class="form" action="/accounts/profile/{{ user.request.username }}/">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <input type="submit" value="Login" class="btn btn-outline-success">
+    <p class="message">Not Registered? <a href="{% url 'signup' %}">Register</a></p>
+
+</form>
+	</div>
+</center>
+{% endblock %}

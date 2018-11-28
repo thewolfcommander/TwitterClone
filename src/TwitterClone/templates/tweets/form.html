@@ -1,0 +1,6 @@
+{% load crispy_forms_tags %}
+<form action="{% if action_url %}{{ action_url }}{% endif %}" class="form">
+	{% csrf_token %}
+	{{ form|crispy }}
+	<input type="submit" name="{{ btn_title }}">
+</form>

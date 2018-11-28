@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block script %}
+
+<script type="text/javascript">
+
+</script>
+
+{% endblock script %}
+
+
+{% block title %}
+	{{ block.super }} | Latest Tweets
+{% endblock title %}
+
+{% block content %}
+	
+	<div class="row">
+		<div class="col-md-9 col-sm-offset-2">
+			{% if not request.GET.q %}
+				<div class="row mt-5 p-5"> 
+					<a href="{% url 'tweets:tweet-create' %}"><button class="btn btn-primary">Click here to Tweet Now</button></a>
+				</div>
+			{% endif %}
+			<h1 class="display-1" style="position: relative; background: #fff;">All Tweets</h1>
+			<button class="ml-1 btn btn-dark text-light">{{ all_tweet_list.count }}</button>
+			{% for tweet_object in all_tweet_list %}
+				<div class="media mt-5">
+					<div class="media-left">
+						<a href="#">
+							{% if not tweet_object.image %}
+								<img src="https://images.pexels.com/photos/1705/love-heart-yellow-photography.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="media-object mr-5" alt="" width="80px">
+							{% endif %}
+						</a>
+					</div>
+					<div class="media-body">
+						{{ tweet_object.content }}<br>
+						via <a href="/accounts/profile/{{ user.username }}/">{{ tweet_object.user }}</a> | {{ tweet_object.timestamp }} ago<br>
+						<p class="monospace text-muted font-italic">Last Updated {{ tweet_object.timestamp|timesince }} ago | <a href="{% url 'tweets:tweet-detail' tweet_object.pk %}">View</a></p>
+					</div>
+				</div><br><hr><br>
+			{% endfor %}
+		</div>
+		<div class="col-md-3 mt-5">
+			<h1 class="display-4" style="position: relative; background: #fff;">Popular Users</h1>
+			<button class="ml-1 btn btn-dark text-light">{{ all_users.count }}</button><br>
+			<div class="mt-5 p-3" style="border: 1px solid #d4d9d1;">
+				{% for me in all_users %}
+					{{ me.user.username }} | 
+					<a href="{% url 'accounts:profile' me.user.username %}">Visit Profile</a>
+					<hr>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock content %}

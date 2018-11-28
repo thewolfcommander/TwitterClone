@@ -1,0 +1,7 @@
+https://twitter2201.herokuapp.com/ ==> Home
+https://twitter2201.herokuapp.com/admin/ ==> Django Admin
+https://twitter2201.herokuapp.com/accounts/
+https://twitter2201.herokuapp.com/feed/
+https://twitter2201.herokuapp.com/api/feed/
+https://twitter2201.herokuapp.com/api/<username>/feed/
+https://twitter2201.herokuapp.com/api/<username>/details/

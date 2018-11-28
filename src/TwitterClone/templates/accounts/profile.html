@@ -1,0 +1,70 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+	{{ block.super }} | Detail
+{% endblock title %}
+
+{% block content %}
+	<h1 class="display-1 mt-5" style="">User Details!</h1>
+	{{ object.username }}<br>
+	{{ object.firstName }}<br>
+	{{ object.lastName }}<br>
+	{{ object.email }}<br>
+
+<div class="container-all">
+	<div class="col-md-4 col-sm-12" style="float: left; border-right: 1px solid #d4d9d1;">
+		<hr><hr><hr>
+		<h1 class="display-4">
+			Tweets
+			<button class="ml-1 btn btn-dark text-light">{{ object.tweet_set.count }}</button>
+		</h1>
+		<br>
+		{% for tweets in object.tweet_set.all %}
+			<div style="border: 1px solid #d4d9d1; background: #fff; max-width: 400px; " class="text-justify p-4">
+				<p class="lead">{{ tweets.content }}</p>
+				<p class="lead">Tweeted on : {{ tweets.timestamp }}</p>
+				<p class="lead font-italic text-primary">Last Updated : {{ tweets.updated|timesince }} ago | <a href="{% url 'tweets:tweet-detail' tweets.pk %}">View</a></p>	
+			</div>
+			<hr>
+		{% endfor %}
+	</div>
+	<div class="col-md-4 col-sm-12" style="float: left; border-right: 1px solid #d4d9d1;">
+		<hr><hr><hr>
+		<h1 class="display-4">
+			Following
+			<button class="ml-1 btn btn-dark text-light">{{ object.profile.following.count }}</button>
+
+			<a href="{{ object.profile.get_follow_url }}" class="btn btn-info">
+				{% if following %} Unollow {% else %} Follow {% endif %}
+			</a>
+		</h1>
+		<br>
+		{% for user in object.profile.following.all %}
+			{{ user.username }}
+			<a href="{% url 'accounts:profile' user.username %}">Visit Profile</a>
+			<hr>
+		{% empty %}
+			<h4 class="text-danger">Sorry, You are not following any users yet.</h4>
+		{% endfor %}
+	</div>
+	<div class="col-md-4 col-sm-12" style="float: left; border-right: 1px solid #d4d9d1;">
+		<hr><hr><hr>
+		<h1 class="display-4">
+			Followers
+			<button class="btn btn-dark text-light ml-1">{{ object.followed_by.count }}</button>
+		</h1>
+		<br>
+		{% for prof in object.followed_by.all %}
+			{{ prof.user.username }}
+			<a href="{% url 'accounts:profile' prof.user.username %}">Visit Profile</a>
+			<hr>
+		{% empty %}
+			<h4 class="text-success">Sorry, You are not followed by any users yet.</h4>
+		{% endfor %}
+	</div>
+</div>
+
+
+
+{% endblock content %}

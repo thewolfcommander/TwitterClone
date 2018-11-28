@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+	{{ block.super }} | Update Tweet
+{% endblock title %}
+
+{% block content %}
+	<h1 class="display-1">Update The Tweet</h1>
+	<form action="" class="form" method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<input type="submit" value="Update Tweet">
+	</form>
+
+{% endblock content %}
