@@ -1,7 +1,25 @@
-https://twitter2201.herokuapp.com/ ==> Home
+https://twitter2201.herokuapp.com/ ==> Home (GET)
+https://twitter2201.herokuapp.com/accounts/profile/<username>/ ==> For Viewing Profile of any user (GET)
+https://twitter2201.herokuapp.com/accounts/profile/<username>/follow/ ==> To follow a particular user (POST)
 https://twitter2201.herokuapp.com/admin/ ==> Django Admin
-https://twitter2201.herokuapp.com/accounts/
-https://twitter2201.herokuapp.com/feed/
-https://twitter2201.herokuapp.com/api/feed/
-https://twitter2201.herokuapp.com/api/<username>/feed/
-https://twitter2201.herokuapp.com/api/<username>/details/
+https://twitter2201.herokuapp.com/feed/ ==> Same as Home but shows all the tweets over there (GET)
+https://twitter2201.herokuapp.com/feed/tweet-create/ ==> Create New tweet (POST)
+https://twitter2201.herokuapp.com/feed/tweet-details/<pk>/ ==> Displays the details of the selected tweet (POST)
+https://twitter2201.herokuapp.com/feed/tweet-details/<pk>/update/ ==> Update the selected tweet (POST)
+https://twitter2201.herokuapp.com/feed/tweet-details/<pk>/delete/ ==> Delete the selected tweet (POST)
+
+
+FOR API:
+
+
+https://twitter2201.herokuapp.com/api/feed/ ==>API Home shows the tweets posted by the user that has logged in (GET)
+https://twitter2201.herokuapp.com/api/<username>/feed/ ==> Shows the api feed for particular users (GET)
+https://twitter2201.herokuapp.com/api/<username>/details/ ==> Shows the api followers data, total users, tweets, etc. for particular users (GET)
+https://twitter2201.herokuapp.com/api/feed/create/ ==> API for creating a new tweet (POST)
+
+
+NOTE:
+
+1. You have to login to admin to see the app working correctly ==> ADMIN CREDENTIALS: (username = 'heman', password= 'Pikme@22')
+2. <username> is variable in which you can put any username that is stored in database
+3. <pk> is valriable in which you can put any id of the tweet viz. 1, 2, 3, etc.
