@@ -58,17 +58,3 @@ class TweetDeleteView(LoginRequiredMixin, UserOwnerMixin, DeleteView):
     success_url = reverse_lazy('tweets:tweet-list')
     template_name = 'tweets/delete_confirm.html'
 
-
-# Views for Django REST Framework - Twitter Clone APIs
-
-# class TweetView(APIView):
-#     def get(self, request, format=None):
-#         obj = Tweet.objects.all()
-#         serializer = serializers.TweetSerializer(Tweet, many=True)
-#         return Response(serializer.data)
-
-#     def post(self, request, format=None):
-#         serializer = serializers.TweetSerializer(data = request.data)
-#         serializer.is_valid(raise_exception = True)
-#         serializer.save()
-#         return Response(serializer.data, status = status.HTTP_201_CREATED)

@@ -12,6 +12,8 @@ urlpatterns = [
     # path('tweet-details/<pk>/delete/', TweetDeleteView.as_view(), name='tweet-delete'),
 
     path('profile/<username>/', UserDetailView.as_view(), name='profile'),
+
+    # path('profile/', UserDetailView.as_view(), name='profile-click'),
     path('profile/<username>/follow/', UserFollowView.as_view(), name='follow'),
 
     # For APIs

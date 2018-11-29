@@ -5,8 +5,9 @@ from .views import *
 app_name = 'account-api'
 
 urlpatterns = [
-	path('<username>/feed/', TweetListAPIView.as_view(), name='list'),
-	path('<username>/details/', UserDetailView.as_view(), name='user-detail'),
+    path('<username>/feed/', TweetListAPIView.as_view(), name='list'),
+    path('<username>/following/', UserDetailView.as_view(), name='user-detail'),
+    path('<username>/followers/', UserDetailFollowerView.as_view(), name='user-follower'),
 
 
 

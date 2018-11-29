@@ -1,6 +1,10 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse_lazy
+from django.contrib.auth import get_user_model
+from tweets.models import Tweet
+
+User = get_user_model()
 
 # Create your models here.
 class UserProfileManager(models.Manager):
@@ -36,11 +40,16 @@ class UserProfileManager(models.Manager):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='profile', on_delete=models.CASCADE)
-    following = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name = 'followed_by', blank=True)
+    # user_name = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_name')
+    following = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name = 'followed_by', blank=True, symmetrical=False)
 
     objects = UserProfileManager()
     def __str__(self):
         return str(self.following.all())
+
+    # def get_user_name(self):
+    #     users = self.objects.get('id')
+    #     return users.user.username
 
     def get_following(self):
         users = self.following.all()
